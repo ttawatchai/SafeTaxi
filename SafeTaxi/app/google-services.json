@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "356564582190",
+    "firebase_url": "https://safetaxi-d1979.firebaseio.com",
+    "project_id": "safetaxi-d1979",
+    "storage_bucket": "safetaxi-d1979.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356564582190:android:2ca7cbb546041c69",
+        "android_client_info": {
+          "package_name": "com.example.zipper.safetaxi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "356564582190-ar523tabsn54h2vvjtu831f1b1cqdcil.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJ0PVkipV6ZDJ8jwuaiFTJwBJxMVkyTFA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "356564582190-ar523tabsn54h2vvjtu831f1b1cqdcil.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

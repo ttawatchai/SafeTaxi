@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_map"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    tools:context="com.example.zipper.safetaxi.MapsActivity"
+    android:orientation="vertical"  >
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/desName" />
+
+    <Button
+        android:layout_width="63dp"
+        android:layout_height="wrap_content"
+        android:text="เริ่มต้น"
+        android:id="@+id/btnFindPath"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/dura"
+        android:layout_toStartOf="@+id/dura"
+        android:layout_marginRight="69dp"
+        android:layout_marginEnd="69dp"
+        android:layout_marginBottom="11dp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/originName"
+        android:textSize="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:id="@+id/desName"
+        android:layout_below="@+id/originName"
+        android:layout_alignLeft="@+id/originName"
+        android:layout_alignStart="@+id/originName" />
+
+    <TextView
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:text="0 km"
+        android:id="@+id/tvDistance"
+        android:layout_weight="10.21"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:text="0 min"
+        android:id="@+id/dura"
+        android:layout_above="@+id/map"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/desName"
+        android:layout_alignLeft="@+id/desName"
+        android:layout_alignStart="@+id/desName"
+        android:layout_marginTop="22dp"
+        android:id="@+id/meter" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/meter"
+        android:layout_alignLeft="@+id/btnFindPath"
+        android:layout_alignStart="@+id/btnFindPath"
+        android:layout_marginLeft="35dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="41dp"
+        android:id="@+id/textview" />
+
+    <Button
+        android:text="Finish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Finish"
+        android:visibility="invisible"
+        android:onClick="stop"
+        android:layout_alignBaseline="@+id/buttongo"
+        android:layout_alignBottom="@+id/buttongo"
+        android:layout_toRightOf="@+id/buttongo"
+        android:layout_toEndOf="@+id/buttongo" />
+
+    <Button
+        android:text="เริ่มต้น1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttongo"
+        android:layout_marginRight="28dp"
+        android:layout_marginEnd="28dp"
+        android:visibility="invisible"
+        android:layout_alignBaseline="@+id/btnFindPath"
+        android:layout_alignBottom="@+id/btnFindPath"
+        android:layout_toLeftOf="@+id/btnFindPath"
+        android:layout_toStartOf="@+id/btnFindPath" />
+
+
+</RelativeLayout>

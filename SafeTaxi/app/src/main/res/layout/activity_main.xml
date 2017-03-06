@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="0dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.zipper.safetaxi.MainActivity">
+
+
+    <TextView
+        android:text="ใส่ข้อมูลเพื่อเริ่มต้น"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:textSize="25dp"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp" />
+
+    <fragment
+    android:id="@+id/place_autocomplete_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+    tools:layout="@layout/place_autocomplete_item_powered_by_google"
+        android:textSize="0sp"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <fragment
+        android:id="@+id/place_autocomplete_fragment1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+        tools:layout="@layout/place_autocomplete_item_powered_by_google"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="53dp" />
+
+    <Button
+        android:text="คำนวณ"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnFindPath"
+        android:layout_below="@+id/place_autocomplete_fragment1"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/dis"
+        android:layout_toEndOf="@+id/dis"
+        android:textSize="20dp"
+        android:id="@+id/tvDistan"
+        android:layout_alignLeft="@+id/tvCost"
+        android:layout_alignStart="@+id/tvCost" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView11"
+        android:layout_toEndOf="@+id/dura"
+        android:textSize="20dp"
+
+        android:id="@+id/tvCost"
+        android:layout_alignLeft="@+id/tvDuration"
+        android:layout_alignStart="@+id/tvDuration" />
+
+    <TextView
+        android:text="ระยะทาง"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:id="@+id/dis"
+        android:layout_below="@+id/dura"
+        android:layout_alignLeft="@+id/dura"
+        android:layout_alignStart="@+id/dura"
+        android:layout_marginTop="21dp" />
+
+    <Button
+        android:text="start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/start"
+        android:layout_marginBottom="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/dis"
+        android:layout_toEndOf="@+id/dis"
+        android:visibility="invisible"
+        android:onClick="gogo" />
+
+    <TextView
+        android:text="เวลาที่ใช้"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dura"
+        android:layout_marginTop="95dp"
+        android:textSize="20dp"
+
+        android:layout_below="@+id/place_autocomplete_fragment1"
+        android:layout_toStartOf="@+id/btnFindPath" />
+
+    <TextView
+        android:text="ราคา"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dis"
+        android:layout_alignLeft="@+id/dis"
+        android:layout_alignStart="@+id/dis"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:id="@+id/textView11" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvDuration"
+        android:layout_above="@+id/dis"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView"
+        android:layout_marginRight="39dp"
+        android:layout_marginEnd="39dp"
+        android:textSize="20dp"
+        />
+
+
+
+</RelativeLayout>

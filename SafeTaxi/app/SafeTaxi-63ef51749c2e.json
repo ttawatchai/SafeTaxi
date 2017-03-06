@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "safetaxi-148306",
+  "private_key_id": "63ef51749c2ec9b26e18f602f2216916c3e8ff8b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC9Eo5pZsjT93AM\ns76yIoD379IrbwQAXtgyjZQyesQOUMnUOO7Woth9SxyK0/6RfxigemsJBRqZMBPa\nfR0dCT5+Z1akmZx1PF3ZoJHGYlbVEhR4Fv+RjZQq7f2wwZO54vWwy5R4bfdQqk46\nQ91pA40TfKNZyxV5ykMeXtUysNW56a67G8NT6GsiY67h3XZMejC3EAJ2prEFSg9p\nImsRptH6mLMjK1lIohlNOBEf67U9eXBIJF7ztk7q9QGrSCYO58VZ60N3r6hqhfth\nGIVEOEK8gvZEgKrdTo2eeGJ2JR4ajuAqlkMPhKejtWSNVXBjQ6V1uz+SXNs48ANK\ncfXqwUFHAgMBAAECggEAcYYQyCyU7OCnAJl0KJUbBsOSV83igy5vdXsYvm6EBWxw\nouJEVc+VWTWeP6UmNsovSTv3xISyAcSiRw/USTjhsxftKAurq6DBYQhOPuWQ6YJf\nk/OLJCP0EQqwxk6UmooxpyO1U9IDKwX2znktGf6t2EN/+Uw86tGNF1EthbAzw9oJ\nA4Hi4i+EiostV+rOZpjSN7mZw+lpf2poFpv6krTxf4IQJtxN+LgnxPxWi+cHW0k+\nN9miugvV0C3CL6Bya+3iXm26/rZWr6uSdK1rvUp5gaQad6BhTQs6EepkrGfwYuaw\n3fibBfUgJ2l1x19/RfUSTFA9INeOsIGEcb0AkZjmwQKBgQDp9XIbMSnzLTvKUv/A\n0DeNXM3oaqjwcl4DfCX1Qo3V67/lRtzut2Z3V/fNXeJAdpQuEg+gXQbUdyyM8mUL\n5yO4uy6owTK+dsm6RQRo7g62P46njjSQ8huT3SkWDhKuttqMaIAIuj+L/sFdNgzt\n1PoXf7/yZXbl4x4hfMH1oV1vMQKBgQDO4o4l517HGxYEDTgY6N8vt2UvE5UNlU3E\nBJamqZa5zQMKnjMjjqflys6ZjcXT2XV+Xngv6EN1U1/UIEWZMlDsE5DWbrVL3PNe\ntYXx7XvhRRX0T3Zejs0uDbxlQNABr0E6wkW9OXaq9jmlJrdc+3of41vZlnf2dCyX\ncq0VpcZJ9wKBgCEq7clTF/pkoERXrfBc1HNTA9H+RQMJg7CEyjDSBZ+dM3BCspGZ\nKIqkyvmvZKL07J73aoW2ioBWgNdeidq9IwBOcRf1g8ciugiRPkXN8gH+UrAIZgVi\nfWxh/zAkQJvKSoN7USNrnBSxwiH/xqd0+RuZvdGUdt2ybBQdRrYW8VMRAoGAP833\ncREuVdGwtIcvKd+IFbtF5YLwkUPeu/l+TOA4sAzeR0QLGYhBl8k4dnsW7ANBDTwt\nbPkA9QpFn7JkRJ8T/fr6zGdQWplGJYtuR/KqJgucfcCUDQ2VkgKCe+fFPv/B6lFI\nGNfEFW3i0WBjZLXaMEN6bFzPmp6xsfOYFfkOcnkCgYBsJk4wivOV6g+KmD1xeuLJ\nP49Sk1IDNw0t3j0GBHDD3d7pjKOIF/lS2+Rys3tz8dY0K6njsB939eNgs6E7RKbQ\n6bAg1WUmNn38XfWd3D2/a8bo23k91bpG0uXu/ytMz8MDaCIHRThZ+hiCdo+MIZVW\ng82lGY7m8Jo0xVL3zGl6tA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "safetaxi-148306@appspot.gserviceaccount.com",
+  "client_id": "115838852214674522937",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/safetaxi-148306%40appspot.gserviceaccount.com"
+}
