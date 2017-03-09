@@ -27,8 +27,7 @@ import com.google.android.gms.location.LocationServices;
 
 import java.text.DateFormat;
 
-public class MapFriendActivity extends AppCompatActivity
-        implements LocationListener, GoogleApiClient.ConnectionCallbacks,
+public class MapFriendActivity extends AppCompatActivity implements LocationListener, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
     GoogleApiClient mGoogleApiClient;
@@ -54,12 +53,17 @@ public class MapFriendActivity extends AppCompatActivity
                 .build();
     }
 
-    @Override
+    protected void start(View v)
+    {
+        mGoogleApiClient.connect();
+        super.onStart();
+    }
+    /*@Override
     protected void onStart() {
         mGoogleApiClient.connect();
         super.onStart();
     }
-
+*/
     @Override
     protected void onStop() {
         mGoogleApiClient.disconnect();

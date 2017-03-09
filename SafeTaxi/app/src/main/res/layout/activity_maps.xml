@@ -19,13 +19,12 @@
         android:layout_below="@+id/desName" />
 
     <Button
-        android:layout_width="63dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:text="เริ่มต้น"
+        android:text="เเสดงเส้นทาง"
         android:id="@+id/btnFindPath"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/dura"
-        android:layout_toStartOf="@+id/dura"
         android:layout_marginRight="69dp"
         android:layout_marginEnd="69dp"
         android:layout_marginBottom="11dp" />
@@ -95,29 +94,32 @@
         android:id="@+id/textview" />
 
     <Button
+        android:text="Start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttongo"
+        android:layout_marginRight="18dp"
+        android:layout_marginEnd="18dp"
+        android:visibility="invisible"
+        android:layout_alignBaseline="@+id/btnFindPath"
+        android:layout_alignBottom="@+id/btnFindPath"
+        android:layout_alignRight="@+id/textview"
+        android:layout_alignEnd="@+id/textview"
+        android:onClick="start" />
+
+    <Button
         android:text="Finish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Finish"
         android:visibility="invisible"
         android:onClick="stop"
-        android:layout_alignBaseline="@+id/buttongo"
-        android:layout_alignBottom="@+id/buttongo"
-        android:layout_toRightOf="@+id/buttongo"
-        android:layout_toEndOf="@+id/buttongo" />
-
-    <Button
-        android:text="เริ่มต้น1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttongo"
-        android:layout_marginRight="28dp"
-        android:layout_marginEnd="28dp"
-        android:visibility="invisible"
         android:layout_alignBaseline="@+id/btnFindPath"
         android:layout_alignBottom="@+id/btnFindPath"
-        android:layout_toLeftOf="@+id/btnFindPath"
-        android:layout_toStartOf="@+id/btnFindPath" />
+        android:layout_alignLeft="@+id/btnFindPath"
+        android:layout_alignStart="@+id/btnFindPath"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp" />
 
 
 </RelativeLayout>

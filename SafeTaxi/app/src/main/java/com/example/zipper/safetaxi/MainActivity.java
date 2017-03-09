@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements DirectionFinderLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Uid = getIntent().getExtras().getString("UID");
+
         txtEmail = getIntent().getExtras().getString("Email");
         btnFindPath = (Button) findViewById(R.id.btnFindPath);
         btnFindPath.setOnClickListener(new View.OnClickListener() {
