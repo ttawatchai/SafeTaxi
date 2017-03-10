@@ -33,7 +33,10 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".RegisActivity" />
         <activity android:name=".FriendActivity" />
-        <activity android:name=".MapFriendActivity"></activity>
+        <activity android:name=".MapFriendActivity" />
+        <activity android:name=".MenuActivity" />
+        <activity android:name=".HistoryActivity" />
+        <activity android:name=".ListHistoryActivity"></activity>
     </application>
 
 </manifest>

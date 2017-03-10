@@ -39,7 +39,9 @@ public class LoginActivity extends AppCompatActivity {
 
                         if(task.isSuccessful()){
                             Toast.makeText(LoginActivity.this,"Login successful", Toast.LENGTH_LONG).show();
-                            Intent i =new Intent(LoginActivity.this, MainActivity.class);
+                            /*Intent i =new Intent(LoginActivity.this, MainActivity.class);*/
+                            /*test*/
+                            Intent i =new Intent(LoginActivity.this, HistoryActivity.class);
                             i.putExtra("UID", firebaseAuth.getCurrentUser().getUid());
                             i.putExtra("Email", firebaseAuth.getCurrentUser().getEmail());
                             startActivity(i);
