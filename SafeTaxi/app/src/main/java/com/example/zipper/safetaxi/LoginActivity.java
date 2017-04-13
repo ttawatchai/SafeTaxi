@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -13,11 +14,17 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText id;
     private  EditText  pass;
     private FirebaseAuth firebaseAuth;
+    private String Uid;
+    DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference mUsersRef = mRootRef.child("History");
+
 
 
     @Override
@@ -27,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         id = (EditText) findViewById(R.id.id);
         pass =(EditText)findViewById(R.id.pass);
         firebaseAuth =FirebaseAuth.getInstance();
+
     }
     public void onAuth(View v){
         final ProgressDialog progressDialog = ProgressDialog.show(LoginActivity.this, "Please wait ...","Processing...",true);
@@ -41,9 +49,15 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this,"Login successful", Toast.LENGTH_LONG).show();
                             /*Intent i =new Intent(LoginActivity.this, MainActivity.class);*/
                             /*test*/
-                            Intent i =new Intent(LoginActivity.this, HistoryActivity.class);
+                            Intent i =new Intent(LoginActivity.this, HomeActivity.class);
                             i.putExtra("UID", firebaseAuth.getCurrentUser().getUid());
                             i.putExtra("Email", firebaseAuth.getCurrentUser().getEmail());
+                            Uid = firebaseAuth.getCurrentUser().getEmail();
+                           /* DatabaseReference mUID = mUsersRef.child(Uid);
+                            mUID.child("Status").setValue("Off");
+                            DatabaseReference mCur = mUID.child("current location");
+                            mCur.child("lat").setValue("0");
+                            mCur.child("long").setValue("0");*/
                             startActivity(i);
                         }else {
                             Log.e("ERROR", task.getException().toString());
@@ -54,12 +68,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void regis(View v){
-        Intent i =new Intent(LoginActivity.this, RegisActivity.class);
+        Intent i =new Intent(LoginActivity.this, LoginAppActivity.class);
         startActivity(i);
     }
 
     public void go(View v){
-        Intent i =new Intent(LoginActivity.this, MapFriendActivity.class);
+        Intent i =new Intent(LoginActivity.this, HomeActivity.class);
         startActivity(i);
     }
 

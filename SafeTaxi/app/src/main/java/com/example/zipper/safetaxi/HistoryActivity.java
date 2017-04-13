@@ -3,6 +3,7 @@ package com.example.zipper.safetaxi;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,6 +18,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -39,10 +42,8 @@ public class HistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_history);
         Uid = getIntent().getExtras().getString("UID");
         DatabaseReference mHis = mUsersRef.child(Uid);
-        final DatabaseReference mUid = mHis.getRef();
-
-
-
+        DatabaseReference mUid = mHis.child("His");
+        final DatabaseReference mLog = mUid.getRef();
 
 
         /*DatabaseReference UID = FirebaseDatabase.getInstance().getReference().getRoot();*/
@@ -50,9 +51,11 @@ public class HistoryActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView);
         arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list_of_history);
         listView.setAdapter(arrayAdapter);
-        mUid.orderByChild("st");
 
-        mUid.addValueEventListener(new ValueEventListener() {
+
+
+
+        mLog.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -61,15 +64,21 @@ public class HistoryActivity extends AppCompatActivity {
                 Iterator i = dataSnapshot.getChildren().iterator();
 
                 while (i.hasNext()){
+
                     set.add(((DataSnapshot)i.next()).getKey());
                 }
 
+
+
                 list_of_history.clear();
+
+
 
                 list_of_history.addAll(set);
 
-
+                Collections.sort(list_of_history);
                 arrayAdapter.notifyDataSetChanged();
+                Collections.sort(list_of_history);
             }
 
             @Override
@@ -83,7 +92,7 @@ public class HistoryActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 Intent intent = new Intent(getApplicationContext(),ListHistoryActivity.class);
-                intent.putExtra("historyname",((TextView)view).getText().toString() );
+                intent.putExtra("hisname",((TextView)view).getText().toString() );
                 intent.putExtra("UID",Uid);
                 startActivity(intent);
             }

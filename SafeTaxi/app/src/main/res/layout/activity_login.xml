@@ -74,7 +74,7 @@
         android:inputType="textEmailAddress"
         android:ems="10"
         android:id="@+id/id"
-        android:layout_marginTop="81dp"
+        android:layout_marginTop="80dp"
         android:layout_marginRight="20dp"
         android:layout_marginEnd="20dp"
         android:layout_alignParentTop="true"
@@ -89,5 +89,14 @@
         android:onClick="go"
         android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/reg" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/btn_sign_in"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp" />
 
 </RelativeLayout>

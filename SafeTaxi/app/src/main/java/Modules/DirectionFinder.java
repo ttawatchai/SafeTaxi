@@ -73,6 +73,8 @@ public class DirectionFinder {
 
         @Override
         protected void onPostExecute(String res) {
+
+
             try {
                 parseJSon(res);
             } catch (JSONException e) {

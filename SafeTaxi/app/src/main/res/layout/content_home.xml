@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.zipper.safetaxi.HomeActivity"
+    tools:showIn="@layout/app_bar_home">
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/relativelayout_for_fragment"
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        android:paddingBottom="0dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.example.zipper.safetaxi.SearchActivity"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+
+        <TextView
+            android:id="@+id/mail"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="24dp"
+            android:text="ใส่ข้อมูลเพื่อเริ่มต้น"
+            android:textSize="25dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <fragment
+            android:id="@+id/place_autocomplete_fragment"
+            android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/mail"
+            android:layout_marginTop="23dp"
+            android:textSize="0sp"
+            tools:layout="@layout/place_autocomplete_item_powered_by_google" />
+
+        <fragment
+            android:id="@+id/place_autocomplete_fragment1"
+            android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/place_autocomplete_fragment"
+            android:layout_marginTop="30dp"
+            tools:layout="@layout/place_autocomplete_item_powered_by_google" />
+
+        <Button
+            android:id="@+id/btnFindPath"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tvDuration"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="22dp"
+            android:text="คำนวณ" />
+
+        <TextView
+            android:id="@+id/tvDistan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/dis"
+            android:layout_alignLeft="@+id/tvCost"
+            android:layout_alignStart="@+id/tvCost"
+            android:layout_toEndOf="@+id/dis"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tvCost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView11"
+            android:layout_alignLeft="@+id/tvDuration"
+
+            android:layout_alignStart="@+id/tvDuration"
+            android:layout_toEndOf="@+id/dura"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/dis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/dura"
+            android:layout_alignStart="@+id/dura"
+            android:layout_below="@+id/dura"
+            android:layout_marginTop="21dp"
+            android:text="ระยะทาง"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvCost"
+            android:layout_toEndOf="@+id/dis"
+            android:layout_toRightOf="@+id/dis"
+            android:onClick="gogo"
+            android:text="start"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/dura"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/place_autocomplete_fragment1"
+            android:layout_marginTop="95dp"
+            android:layout_toStartOf="@+id/btnFindPath"
+
+            android:text="เวลาที่ใช้"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/dis"
+            android:layout_alignStart="@+id/dis"
+            android:layout_below="@+id/dis"
+            android:layout_marginTop="20dp"
+            android:text="ราคา"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tvDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/dis"
+            android:layout_alignEnd="@+id/mail"
+            android:layout_alignRight="@+id/mail"
+            android:layout_marginEnd="39dp"
+            android:layout_marginRight="39dp"
+            android:textSize="20dp" />
+
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

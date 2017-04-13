@@ -3,9 +3,14 @@ package com.example.zipper.safetaxi;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -33,6 +38,7 @@ import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import Modules.DirectionFinder;
@@ -56,13 +62,14 @@ public class MainActivity extends AppCompatActivity implements DirectionFinderLi
     DatabaseReference mUsersRef = mRootRef.child("History");
     private String calMeter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Uid = getIntent().getExtras().getString("UID");
+        Uid = getIntent().getExtras().getString("Email");
 
-        txtEmail = getIntent().getExtras().getString("Email");
+        //txtEmail = getIntent().getExtras().getString("Email");
         btnFindPath = (Button) findViewById(R.id.btnFindPath);
         btnFindPath.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,19 +119,20 @@ public class MainActivity extends AppCompatActivity implements DirectionFinderLi
     }
 
 public void gogo(View v){
-    Calendar cal = Calendar.getInstance();
-    cal.add(Calendar.DATE, 1);
-    String date = String.valueOf(cal.getTime());
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy MM dd HH:mm:ss");
+    Date date1 = new Date();
+    String date = String.valueOf(dateFormat.format(date1));
 
 
 
-    System.out.println(cal.getTime());
+
     /*Long tsLong = System.currentTimeMillis()/1000;
     String ts = tsLong.toString();*/
     Intent intent = new Intent(getApplicationContext(),MapsActivity.class);
     DatabaseReference mUID= mUsersRef.child(Uid);
-    final DatabaseReference mHIS= mUID.child(date);
-    mHIS.child("place").setValue(originN+"ไป"+destinationN);
+    DatabaseReference mhis= mUID.child("His");
+      final DatabaseReference mHIS= mhis.child(date);
+    mHIS.child("เส้นทางจาก").setValue(originN+"  ไป  "+destinationN);
     mHIS.child("cost").setValue(calMeter);
    /* intent.putExtra("HIS",Uid+ts);*/
      intent.putExtra("HIS",date);
@@ -268,6 +276,22 @@ public void gogo(View v){
 
         }
     }
+  /************Setting && navigation*****************/
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
 }
 
