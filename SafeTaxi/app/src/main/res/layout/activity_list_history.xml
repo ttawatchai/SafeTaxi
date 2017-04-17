@@ -21,14 +21,6 @@ android:orientation="vertical"  >
     tools:layout_editor_absoluteX="6dp"
     tools:layout_editor_absoluteY="-1dp" />
 
-<TextView
-    android:id="@+id/latlong_show"
-    android:layout_width="199dp"
-    android:layout_height="66dp"
-    android:text="TextView"
-    tools:layout_editor_absoluteX="132dp"
-    tools:layout_editor_absoluteY="207dp" />
-
     <Button
         android:id="@+id/btnFindPath"
         android:layout_width="120dp"
@@ -41,5 +33,44 @@ android:orientation="vertical"  >
         android:layout_alignParentStart="true"
         android:layout_marginLeft="122dp"
         android:layout_marginStart="122dp" />
+
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="258dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="15dp"
+        android:padding="2dp"
+        android:text="Medium Text"
+        android:textColor="#33CC33"
+        android:textSize="@dimen/cast_libraries_material_featurehighlight_text_horizontal_offset"
+        android:layout_marginStart="32dp"
+        android:layout_below="@+id/map"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="258dp"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:text="Medium Text"
+        android:textColor="#33CC33"
+        android:textSize="@dimen/cast_libraries_material_featurehighlight_text_horizontal_offset"
+        android:layout_below="@+id/text1"
+        android:layout_alignLeft="@+id/text1"
+        android:layout_alignStart="@+id/text1" />
+    <TextView
+        android:id="@+id/text3"
+        android:layout_width="258dp"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:text="Medium Text"
+        android:textColor="#33CC33"
+        android:textSize="@dimen/cast_libraries_material_featurehighlight_text_horizontal_offset"
+        android:layout_below="@+id/text2"
+        android:layout_alignLeft="@+id/text2"
+        android:layout_alignStart="@+id/text2" />
+
 </RelativeLayout>
 

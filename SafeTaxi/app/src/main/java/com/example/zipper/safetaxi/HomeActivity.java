@@ -41,6 +41,7 @@ public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, DirectionFinderListener  {
     String origin;
     String destination;
+    String latdes,longdes;
     CharSequence originN ;
     CharSequence destinationN ;
     private Button btnFindPath,start;
@@ -113,6 +114,8 @@ public class HomeActivity extends AppCompatActivity
 
                 destination = place1.getId();
                 destinationN = place1.getName();
+
+
             }
 
             @Override
@@ -210,11 +213,17 @@ public class HomeActivity extends AppCompatActivity
         Intent intent = new Intent(getApplicationContext(),MapsActivity.class);
         DatabaseReference mUID= mUsersRef.child(Uid);
         DatabaseReference mhis= mUID.child("His");
-        final DatabaseReference mHIS= mhis.child(date);
+        final DatabaseReference mHIS= mhis.child(date + originN+"  ไป  "+destinationN);
         mHIS.child("เส้นทางจาก").setValue(originN+"  ไป  "+destinationN);
+        mHIS.child("form").setValue(originN);
         mHIS.child("cost").setValue(calMeter);
+        mHIS.child("Des").setValue(destinationN);
+        mHIS.child("Taxi Driver").setValue("โปรดใส่ชื่อคนขับ");
+        mHIS.child("Bus Registration").setValue("โปรดใส่ทะเบียนรถยนต์");
+        mHIS.child("meter").setValue("ราคาจริง");
+        mHIS.child("Rate").setValue("score");
         intent.putExtra("HIS",Uid+ts);
-        intent.putExtra("HIS",date);
+        intent.putExtra("HIS",date + originN+"  ไป  "+destinationN);
         intent.putExtra("UID",Uid);
         intent.putExtra("origin",origin );
         intent.putExtra("destination",destination );

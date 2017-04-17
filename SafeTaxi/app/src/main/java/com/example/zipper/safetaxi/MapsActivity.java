@@ -1,7 +1,13 @@
 package com.example.zipper.safetaxi;
 
 import android.Manifest;
+import android.app.ActivityManager;
+import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -16,7 +22,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -24,6 +33,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
@@ -40,6 +50,7 @@ import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.RemoteMessage;
 
 import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
@@ -50,6 +61,7 @@ import Modules.DirectionFinder;
 import Modules.DirectionFinderListener;
 import Modules.Route;
 
+import static android.app.PendingIntent.*;
 import static com.example.zipper.safetaxi.R.id.map;
 
 
@@ -77,8 +89,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Button bu, fi,pop;
     static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private Location mLastLocation;
+    private LatLng locationDes,victory1;
     private LocationManager locationManager;
     private android.location.LocationListener listener;
+    NotificationManager notificationManager,notificationManager1;
+    boolean isNotificActive =false;
+    Location temp = new Location(LocationManager.GPS_PROVIDER);
 
 
 
@@ -94,8 +110,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         final DatabaseReference mHIS = mhis.child(HIS);
 
 
-        /*final DatabaseReference mFri = mHIS.child("Friend");*/
-        /*mFri.child("Friend").setValue("Tawatchai");*/
+
         mUID.child("Status").setValue("On");
 
 
@@ -127,13 +142,75 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
+
+
+
+//*/*/*/*/*/*
+        final NotificationCompat.Builder notification = new NotificationCompat.Builder(this)
+                .setContentTitle("Safe Taxi")
+                .setContentText("อีก 1 กิโลเมตรจะถึงจุดหมายของท่าน")
+                .setTicker("1 กิโลเมตรก่อนถึงจุดหมาย ")
+                .setAutoCancel(true)
+                .setSmallIcon(R.drawable.safe_taxi_logo);
+
+        final Intent more = new Intent(this,MapsActivity.class);
+        more.addFlags((Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_SINGLE_TOP ));
+        more.setAction(Intent.ACTION_MAIN);
+        more.addCategory(Intent.CATEGORY_LAUNCHER);
+//        PendingIntent pen = PendingIntent.getActivity(MapsActivity.this,0,more,0);
+//
+//
+//
+//        notification.setContentIntent(pen);
+//
+//        notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+//        notificationManager.notify(0,notification.build());
+//        notification.setOngoing(true);
+//        notification.setAutoCancel(true);
+
+
+
+
+/*/*//*/*//*///*/
+
         pop.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(new Intent(MapsActivity.this,PopUp.class));
+                Intent intent = new Intent(MapsActivity.this,PopUp.class);
+                intent.putExtra("UID",Uid);
+                Log.d("name",Uid);
+                intent.putExtra("HIS",HIS);
+                startActivity(intent);
+
 
             }
         });
+
+        pop.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                final NotificationCompat.Builder notification1 = new NotificationCompat.Builder(MapsActivity.this)
+                        .setContentTitle("Safe Taxi")
+                        .setContentText("เพื่อนของของคุณเกิดปัญหาในการเดินทาง ต้องการให้ติดต่อกลับ โดยด่วน")
+                        .setTicker("ฉุกเฉิน เพื่อนของคุณต้องการให้ติดต่อกลับ ")
+                        .setAutoCancel(true)
+                        .setSmallIcon(R.drawable.safe_taxi_logo);
+                final Intent more1 = new Intent(MapsActivity.this,MapsActivity.class);
+                more1.addFlags((Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_SINGLE_TOP ));
+                more1.setAction(Intent.ACTION_MAIN);
+                more1.addCategory(Intent.CATEGORY_LAUNCHER);
+                PendingIntent pen = PendingIntent.getActivity(MapsActivity.this,0,more,0);
+                notification1.setContentIntent(pen);
+                notificationManager1 = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+                notificationManager1.notify(0,notification1.build());
+                notification1.setOngoing(true);
+                notification1.setAutoCancel(true);
+
+                return false;
+            }
+        });
+
+
 
 
 //lat
@@ -167,8 +244,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     mLoc.child(time + "," + "long").setValue(loti);
                     mCur.child("lat").setValue(lati);
                     mCur.child("long").setValue(loti);
+Log.d("testt", String.valueOf(location.distanceTo(temp)/1000));
+                    if(location.distanceTo(temp)/1000 == 0.5)
+                    {
+                        PendingIntent pen = PendingIntent.getActivity(MapsActivity.this,0,more,0);
+                        notification.setContentIntent(pen);
+                        notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+                        notificationManager.notify(0,notification.build());
+                        notification.setOngoing(true);
+                        notification.setAutoCancel(true);
+                    }
+
 
                 }
+
 
             }
 
@@ -360,12 +449,23 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             metershow.setText(cost_meter + "-" + cost_meter1 + "บาท");
             //end cal....................
 
+
             originMarkers.add(mMap.addMarker(new MarkerOptions()
                     .title(route.startAddress)
                     .position(route.startLocation)));
             destinationMarkers.add(mMap.addMarker(new MarkerOptions()
                     .title(route.endAddress)
                     .position(route.endLocation)));
+            Log.d("last", String.valueOf(route.endLocation));
+            double lat = route.endLocation.latitude;
+            double longi=route.endLocation.longitude;
+
+//                    temp .setLatitude(lat);
+//                    temp.setLongitude(longi);
+            temp.setLatitude(13.762779141602536);
+            temp.setLongitude(100.53704158465575);
+
+
 
             PolylineOptions polylineOptions = new PolylineOptions().
 
@@ -379,149 +479,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             polylinePaths.add(mMap.addPolyline(polylineOptions));
         }
     }
-/*
-    protected void start(View v)
-    {
-        super.onStart();
-        AsyncTask.execute(new Runnable() {
-            @Override
-            public void run() {
-                mGoogleApiClient.connect();
-
-
-            }
-        });
-        bu.setVisibility(View.INVISIBLE);
-        fi.setVisibility(View.VISIBLE);}
-
-    @Override
-    protected void onStop() {
-        mGoogleApiClient.disconnect();
-        super.onStop();
-    }
-
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-
-        if (ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            ActivityCompat.requestPermissions(MapsActivity.this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
-
-            return;
-        }
-        LocationServices.FusedLocationApi.requestLocationUpdates(
-                mGoogleApiClient, mLocationRequest, this);
-
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-
-    }
-    @Override
-     public void onLocationChanged (final Location location){
-        mLastLocation = location;
-
-                Uid = getIntent().getExtras().getString("UID");
-                HIS = getIntent().getExtras().getString("HIS");
-                DatabaseReference mUID = mUsersRef.child(Uid);
-                DatabaseReference mhis = mUID.child("His");
-                final DatabaseReference mHIS = mhis.child(HIS);
-
-                final DatabaseReference mCur = mUID.child("current location");
-                final DatabaseReference mLoc = mHIS.child("loc");
-
-                //remove previous current location Marker
-
-                double dLatitude = mLastLocation.getLatitude();
-                double dLongitude = mLastLocation.getLongitude();
-                if (location != null) {
-                    String time = DateFormat.getTimeInstance().format(location.getTime());
-
-                    Double lati1 = location.getLatitude();
-                    Double loti1 = location.getLongitude();
-
-                    String lati = Double.toString(location.getLatitude());
-                    String loti = Double.toString(location.getLongitude());
-
-                    mLoc.child(time + "," + "lat").setValue(lati);
-                    mLoc.child(time + "," + "long").setValue(loti);
-                    mCur.child("lat").setValue(lati);
-                    mCur.child("long").setValue(loti);
-
-                }
-
-
-
-
-            }
-
-
-
-
-
-
-    @Override
-    public void onRequestPermissionsResult(
-            int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(MapsActivity.this,
-                            "permission was granted, :)",
-                            Toast.LENGTH_LONG).show();
-
-                    try {
-                        LocationServices.FusedLocationApi.requestLocationUpdates(
-                                mGoogleApiClient, mLocationRequest, this);
-                    } catch (SecurityException e) {
-                        Toast.makeText(MapsActivity.this,
-                                "SecurityException:\n" + e.toString(),
-                                Toast.LENGTH_LONG).show();
-                    }
-                } else {
-                    Toast.makeText(MapsActivity.this,
-                            "permission denied, ...:(",
-                            Toast.LENGTH_LONG).show();
-                }
-                return;
-            }
-        }
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Toast.makeText(MapsActivity.this,
-                "onConnectionFailed: \n" + connectionResult.toString(),
-                Toast.LENGTH_LONG).show();
-    }
-
-    public void stop(View v) {
-        final DatabaseReference mUID = mUsersRef.child(Uid);
-        final DatabaseReference mHIS = mUID.child(HIS);
-        mUID.child("Status").setValue("Off");
-        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
-        Intent i =new Intent(MapsActivity.this, HomeActivity.class);
-        i.putExtra("UID",Uid);
-        startActivity(i);
-
-
-    }*/
 
 
 
@@ -535,7 +492,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         locationManager.removeUpdates(listener);
         locationManager = null;
         i.putExtra("UID",Uid);
-        startActivity(i);
+        finish();
     }
 
     @Override

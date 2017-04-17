@@ -133,7 +133,10 @@ public void gogo(View v){
     DatabaseReference mhis= mUID.child("His");
       final DatabaseReference mHIS= mhis.child(date);
     mHIS.child("เส้นทางจาก").setValue(originN+"  ไป  "+destinationN);
+    mHIS.child("form").setValue(originN);
     mHIS.child("cost").setValue(calMeter);
+    mHIS.child("Des").setValue(destinationN);
+
    /* intent.putExtra("HIS",Uid+ts);*/
      intent.putExtra("HIS",date);
     intent.putExtra("UID",Uid);

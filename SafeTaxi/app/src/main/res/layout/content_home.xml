@@ -9,9 +9,7 @@
     tools:showIn="@layout/app_bar_home">
 
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:id="@+id/relativelayout_for_fragment"
         android:layout_width="368dp"
         android:layout_height="495dp"
@@ -21,14 +19,14 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context="com.example.zipper.safetaxi.SearchActivity"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        tools:layout_editor_absoluteY="-15dp">
 
 
         <TextView
             android:id="@+id/mail"
             android:layout_width="200dp"
             android:layout_height="50dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="12dp"
             android:text="ใส่ข้อมูลเพื่อเริ่มต้น"
             android:textSize="25dp"
             android:layout_alignParentTop="true"
@@ -39,32 +37,32 @@
             android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/mail"
-            android:layout_marginTop="23dp"
+            android:layout_marginTop="15dp"
             android:textSize="0sp"
-            tools:layout="@layout/place_autocomplete_item_powered_by_google" />
+            tools:layout="@layout/place_autocomplete_item_powered_by_google"
+            android:layout_below="@+id/mail"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <fragment
             android:id="@+id/place_autocomplete_fragment1"
             android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp"
+            tools:layout="@layout/place_autocomplete_item_powered_by_google"
             android:layout_below="@+id/place_autocomplete_fragment"
-            android:layout_marginTop="30dp"
-            tools:layout="@layout/place_autocomplete_item_powered_by_google" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <Button
             android:id="@+id/btnFindPath"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/tvDuration"
+            android:text="คำนวณ"
+            android:layout_below="@+id/place_autocomplete_fragment1"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="22dp"
-            android:text="คำนวณ" />
+            android:layout_marginTop="12dp" />
 
         <TextView
             android:id="@+id/tvDistan"
@@ -102,23 +100,25 @@
             android:id="@+id/start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvCost"
-            android:layout_toEndOf="@+id/dis"
-            android:layout_toRightOf="@+id/dis"
             android:onClick="gogo"
             android:text="start"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:layout_below="@+id/tvCost"
+            android:layout_toRightOf="@+id/dura"
+            android:layout_toEndOf="@+id/dura"
+            android:layout_marginTop="22dp" />
 
         <TextView
             android:id="@+id/dura"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/place_autocomplete_fragment1"
-            android:layout_marginTop="95dp"
-            android:layout_toStartOf="@+id/btnFindPath"
+            android:layout_marginTop="58dp"
 
             android:text="เวลาที่ใช้"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:layout_alignTop="@+id/btnFindPath"
+            android:layout_toLeftOf="@+id/btnFindPath"
+            android:layout_toStartOf="@+id/btnFindPath" />
 
         <TextView
             android:id="@+id/textView11"

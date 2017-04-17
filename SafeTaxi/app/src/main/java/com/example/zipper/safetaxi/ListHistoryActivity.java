@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -37,9 +38,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -55,6 +58,7 @@ public class ListHistoryActivity extends AppCompatActivity implements SnapToRoad
 
     private EditText historyname;
     private ListView listView;
+    private TextView txt1,txt2,txt3;
 
     private List<Marker> originMarkers = new ArrayList<>();
     private List<Marker> destinationMarkers = new ArrayList<>();
@@ -66,10 +70,12 @@ public  Button btnFindPath;
     private String name;
     private ProgressDialog progressDialog;
     private List<Polyline> polylinePaths = new ArrayList<>();
+
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mUsersRef = mRootRef.child("History");
     private String Uid, hisname;
     private ArrayList<Position> postions = new ArrayList<Position>();
+    private ArrayList<History> history = new ArrayList<History>();
     PolylineOptions polylineOptions = new PolylineOptions();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +90,7 @@ public  Button btnFindPath;
         DatabaseReference mUid = mHis.child("His");
         DatabaseReference mLog = mUid.child(hisname);
         DatabaseReference mHs = mLog.child("loc");
+        DatabaseReference mhis = mLog.getRef();
         DatabaseReference mLoc = mHs.getRef();
         historyname = (EditText) findViewById(R.id.room_name_edittext);
         listView = (ListView) findViewById(R.id.listView);
@@ -96,6 +103,70 @@ public  Button btnFindPath;
                 sendRequest();
             }
         });
+        mhis.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Iterator i = dataSnapshot.getChildren().iterator();
+
+                while (i.hasNext()) {
+
+                    //Log.d("testval", String.valueOf(((DataSnapshot) i.next()).getValue()));
+                    String meter = (String) ((DataSnapshot) i.next()).getValue();
+                    Log.d("Des",meter);
+                    String rate = (String) ((DataSnapshot) i.next()).getValue();
+                    Log.d("Des",rate);
+                    String Bus = (String) ((DataSnapshot) i.next()).getValue();
+                    Log.d("Des",Bus);
+                    String Taxi = (String) ((DataSnapshot) i.next()).getValue();
+                    Log.d("Des",Taxi);
+                   String Des = (String) ((DataSnapshot) i.next()).getValue();
+                    Log.d("Des",Des);
+                    String cost = (String) ((DataSnapshot) i.next()).getValue();
+                    Log.d("Des",cost);
+                   String form = (String) ((DataSnapshot) i.next()).getValue();
+                    Log.d("Des",form);
+                    try{
+                        Object location = ((DataSnapshot) i.next()).getValue();
+                        Log.d("Des", String.valueOf(location));
+
+                    }
+                    catch (Exception e)
+                    {
+                        Toast.makeText(getApplicationContext(),"NO DATA", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    try{
+                        String tell = (String) ((DataSnapshot) i.next()).getValue();
+                        Log.d("Des",tell);
+
+                    }
+                    catch (Exception e)
+                    {
+                        Toast.makeText(getApplicationContext(),"No DATA", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+
+
+
+
+                  history.add(new History(Des, cost,form));
+
+                }
+                txt1 = (TextView) findViewById(R.id.text1);
+                txt1.setText("เดินทางจาก "+history.get(0).form + "ไปที่" + history.get(0).Des);
+                txt2 = (TextView) findViewById(R.id.text2);
+                txt2.setText(history.get(0).Des);
+                txt3 = (TextView) findViewById(R.id.text3);
+                txt3.setText(history.get(0).Des);
+              // Log.d("Des",history.get(0).Des);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         mLoc.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -113,12 +184,12 @@ public  Button btnFindPath;
                 for (int a = 0; a < postions.size(); a++) {
                     if (a == postions.size() - 1) {
                         txt += postions.get(a).latitude + "," + postions.get(a).longtitde;
-                        Log.d("Position OBJ: ", txt);
+                        //Log.d("Position OBJ: ", txt);
 
                     } else {
 
                         txt += postions.get(a).latitude + "," + postions.get(a).longtitde + "|";
-                        Log.d("Position OBJ: ", txt);
+                       // Log.d("Position OBJ: ", txt);
                     }
                 }
                 txt += "&interpolate=true&key=AIzaSyCaQQKFYXOWltKhlQyA-C_DRmniF1BdRig";
@@ -191,7 +262,7 @@ public  Button btnFindPath;
 
             }
 //
-            Log.d("aa", String.valueOf(location.location.size()));
+            //Log.d("aa", String.valueOf(location.location.size()));
 
 
             mMap.addPolyline(polylineOptions);

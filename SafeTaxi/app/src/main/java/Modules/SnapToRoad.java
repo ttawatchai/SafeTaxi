@@ -131,7 +131,7 @@ public class SnapToRoad {
             decoded.add(x);
 
 
-        Log.d("array", String.valueOf(decoded));
+       // Log.d("array", String.valueOf(decoded));
 
 
         return decoded;
