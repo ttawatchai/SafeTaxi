@@ -2,39 +2,44 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_orange_light"
+    android:background="@drawable/popup"
     android:orientation="vertical">
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="wrap_content"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="41dp"
+        android:background="@drawable/text"
         android:ems="10"
         android:hint="ชื่อคนขับ"
         android:inputType="textPersonName"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:textAlignment="center"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
     <EditText
         android:id="@+id/editText2"
-        android:layout_width="wrap_content"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/editText"
         android:layout_alignStart="@+id/editText"
         android:layout_below="@+id/editText"
         android:layout_marginTop="25dp"
+        android:background="@drawable/text"
         android:ems="10"
         android:hint="ทะเบียนรถเเท๊กซี่"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
     <Button
         android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="43dp"
-        android:onClick="save"
-        android:text="บันทึก" />
+        android:background="@drawable/save"
+        android:onClick="save" />
 </RelativeLayout>

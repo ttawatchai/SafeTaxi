@@ -52,22 +52,24 @@ import Modules.SnapToRoad;
 import Modules.SnapToRoadListener;
 
 import static com.example.zipper.safetaxi.R.id.map;
+import static com.example.zipper.safetaxi.R.id.taxi;
 
 
 public class ListHistoryActivity extends AppCompatActivity implements SnapToRoadListener,OnMapReadyCallback {
 
     private EditText historyname;
     private ListView listView;
-    private TextView txt1,txt2,txt3;
+    private TextView txt1,txt2,txt3,txt4;
 
     private List<Marker> originMarkers = new ArrayList<>();
     private List<Marker> destinationMarkers = new ArrayList<>();
     private ArrayAdapter<String> arrayAdapter;
+
     public static String txt;
     private GoogleMap mMap;
 public  Button btnFindPath;
     private ArrayList<String> list_of_history = new ArrayList<>();
-    private String name;
+    private String name,tell,meter,Taxi,Bus;
     private ProgressDialog progressDialog;
     private List<Polyline> polylinePaths = new ArrayList<>();
 
@@ -97,6 +99,12 @@ public  Button btnFindPath;
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list_of_history);
 
         btnFindPath = (Button) findViewById(R.id.btnFindPath);
+        txt1 = (TextView)findViewById(R.id.tell) ;
+        txt2 = (TextView)findViewById(R.id.taxi) ;
+        txt3 = (TextView)findViewById(R.id.code) ;
+        txt4 = (TextView)findViewById(R.id.meter) ;
+
+
         btnFindPath.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,54 +119,49 @@ public  Button btnFindPath;
                 while (i.hasNext()) {
 
                     //Log.d("testval", String.valueOf(((DataSnapshot) i.next()).getValue()));
-                    String meter = (String) ((DataSnapshot) i.next()).getValue();
-                    Log.d("Des",meter);
+                    Bus = (String) ((DataSnapshot) i.next()).getValue();
+                    Log.d("Data_BUs", Bus);
+                    String Des = (String) ((DataSnapshot) i.next()).getValue();
+                    Log.d("Data_Des", Des);
                     String rate = (String) ((DataSnapshot) i.next()).getValue();
-                    Log.d("Des",rate);
-                    String Bus = (String) ((DataSnapshot) i.next()).getValue();
-                    Log.d("Des",Bus);
-                    String Taxi = (String) ((DataSnapshot) i.next()).getValue();
-                    Log.d("Des",Taxi);
-                   String Des = (String) ((DataSnapshot) i.next()).getValue();
-                    Log.d("Des",Des);
+
+
+                    Taxi = (String) ((DataSnapshot) i.next()).getValue();
+                    Log.d("Data_Driver", Taxi);
+
                     String cost = (String) ((DataSnapshot) i.next()).getValue();
-                    Log.d("Des",cost);
-                   String form = (String) ((DataSnapshot) i.next()).getValue();
-                    Log.d("Des",form);
-                    try{
+                    Log.d("Data_Cost", cost);
+                    String form = (String) ((DataSnapshot) i.next()).getValue();
+                    Log.d("Data_form", form);
+                    try {
                         Object location = ((DataSnapshot) i.next()).getValue();
-                        Log.d("Des", String.valueOf(location));
+                    } catch (Exception e) {
+                        Toast.makeText(getApplicationContext(), "NO Data", Toast.LENGTH_SHORT).show();
 
-                    }
-                    catch (Exception e)
-                    {
-                        Toast.makeText(getApplicationContext(),"NO DATA", Toast.LENGTH_SHORT).show();
                         break;
                     }
-                    try{
-                        String tell = (String) ((DataSnapshot) i.next()).getValue();
-                        Log.d("Des",tell);
+                    meter = (String) ((DataSnapshot) i.next()).getValue();
+                    Log.d("Data_meter", meter);
+                    try {
+                        tell = (String) ((DataSnapshot) i.next()).getValue();
+                        Log.d("Data_tell", tell);
 
-                    }
-                    catch (Exception e)
-                    {
-                        Toast.makeText(getApplicationContext(),"No DATA", Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
+                        Toast.makeText(getApplicationContext(), "No DATA", Toast.LENGTH_SHORT).show();
                         break;
                     }
 
 
+                    history.add(new History(Des, cost, form));
 
-
-                  history.add(new History(Des, cost,form));
-
+//                txt1 = (TextView) findViewById(R.id.text1);
+//                txt1.setText("เดินทางจาก "+history.get(0).form + "ไปที่" + history.get(0).Des);
+//                txt2 = (TextView) findViewById(R.id.text2);
+//                txt2.setText(history.get(0).Des);
+//                txt3 = (TextView) findViewById(R.id.text3);
+//                txt3.setText(history.get(0).Des);
+//              // Log.d("Des",history.get(0).Des);
                 }
-                txt1 = (TextView) findViewById(R.id.text1);
-                txt1.setText("เดินทางจาก "+history.get(0).form + "ไปที่" + history.get(0).Des);
-                txt2 = (TextView) findViewById(R.id.text2);
-                txt2.setText(history.get(0).Des);
-                txt3 = (TextView) findViewById(R.id.text3);
-                txt3.setText(history.get(0).Des);
-              // Log.d("Des",history.get(0).Des);
             }
 
             @Override
@@ -231,6 +234,36 @@ public  Button btnFindPath;
     public void onSnapToRoadStart() {
         progressDialog = ProgressDialog.show(this, "กำลังค้นหา",
                 "ค้นหาเส้นทาง", true);
+
+        Log.d("check",tell+Taxi+Bus+meter+null);
+        txt1.setText(tell);
+        String tmp1 = Taxi;
+        String tmp2 = "โปรดใส่ชื่อคนขับ";
+        tmp2.trim();
+        tmp1.trim();
+        if(tmp1 != "" && tmp1 != null && tmp1.equals(tmp2)==false)
+        {
+            txt2.setText(Taxi);
+        }
+        else
+        {
+            txt2.setText("-");
+        }
+        tmp1 = Bus;
+        tmp2 = "โปรดใส่ทะเบียนรถยนต์";
+        tmp2.trim();
+        tmp1.trim();
+        if(tmp1 != "" && tmp1 != null && tmp1.equals(tmp2)==false)
+        {
+            txt3.setText(Bus);
+        }
+        else
+        {
+            txt3.setText("-");
+        }
+        txt4.setText(meter);
+
+
 
 
 

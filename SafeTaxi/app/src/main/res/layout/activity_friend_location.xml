@@ -15,11 +15,82 @@
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="372dp"
-        android:layout_height="394dp"
+        android:layout_width="400dp"
+        android:layout_height="350dp"
         android:layout_below="@+id/desName"
         tools:layout_editor_absoluteX="6dp"
         tools:layout_editor_absoluteY="-1dp" />
+
+    <TextView
+        android:id="@+id/tell"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:padding="2dp"
+        android:textSize="18sp"
+        android:layout_below="@+id/map"
+        android:layout_alignRight="@+id/map"
+        android:layout_alignEnd="@+id/map"
+        android:layout_marginRight="11dp"
+        android:layout_marginEnd="11dp" />
+
+    <TextView
+        android:id="@+id/driver"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:textSize="18sp"
+        android:layout_alignTop="@+id/textView14"
+        android:layout_alignLeft="@+id/tell"
+        android:layout_alignStart="@+id/tell" />
+
+    <TextView
+        android:id="@+id/bus"
+        android:layout_width="258dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView15"
+        android:layout_alignEnd="@+id/driver"
+        android:layout_alignLeft="@+id/driver"
+        android:layout_alignRight="@+id/driver"
+        android:layout_alignStart="@+id/driver"
+        android:padding="2dp"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="เส้นทางจาก :"
+        android:textSize="18sp"
+        android:layout_alignBottom="@+id/tell"
+        android:layout_toLeftOf="@+id/driver"
+        android:layout_toStartOf="@+id/driver"
+        android:layout_marginRight="30dp"
+        android:layout_marginEnd="30dp" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="ผู้ให้บริการ :"
+        android:textSize="18sp"
+        android:layout_marginTop="19dp"
+        android:layout_below="@+id/textView13"
+        android:layout_alignLeft="@+id/textView13"
+        android:layout_alignStart="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="เลขทะเบียนรถ :"
+        android:textSize="18sp"
+        android:layout_below="@+id/driver"
+        android:layout_alignLeft="@+id/textView14"
+        android:layout_alignStart="@+id/textView14"
+        android:layout_marginTop="19dp" />
+
+
 
     <TextView
         android:id="@+id/latlong_show"
@@ -28,18 +99,6 @@
         android:text="TextView"
         tools:layout_editor_absoluteX="132dp"
         tools:layout_editor_absoluteY="207dp" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="go"
-        android:text="Button"
-        tools:layout_editor_absoluteX="159dp"
-        tools:layout_editor_absoluteY="435dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp" />
 
 
 </RelativeLayout>

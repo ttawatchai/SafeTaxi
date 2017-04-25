@@ -14,7 +14,8 @@ public class History {
     public String Driver;
     public String taxicode;
     public String meter;
-    public String rate;
+    public Float rate;
+    public String tell;
 
 
     public History(String Des, String cost,String Driver)
@@ -32,5 +33,13 @@ public class History {
         this.cost = cost;
         this.taxicode = taxicode;
         this.Driver=Driver;
+    }
+    public History(String Des, String meter, String Driver, String cost,String taxicode) {
+        this.Des=Des;
+        this.cost = cost;
+        this.meter = meter;
+        this.taxicode = taxicode;
+        this.Driver=Driver;
+
     }
 }

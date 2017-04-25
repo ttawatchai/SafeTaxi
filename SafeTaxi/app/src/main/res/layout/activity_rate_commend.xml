@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context="com.example.zipper.safetaxi.RateCommendActivity">
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="66dp"
+        tools:layout_editor_absoluteX="72dp"
+        tools:layout_editor_absoluteY="115dp"
+        android:layout_above="@+id/meter"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/meter"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="55dp"
+        android:background="@drawable/text"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textColor="@color/cast_expanded_controller_background_color"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="135dp"
+        tools:layout_editor_absoluteY="216dp"
+        android:layout_above="@+id/textView3"
+        android:layout_alignLeft="@+id/button2"
+        android:layout_alignStart="@+id/button2" />
+
+    <EditText
+        android:id="@+id/comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="37dp"
+        android:background="@drawable/text"
+        android:ems="10"
+        android:hint="คำเเนะนำ"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textColor="@color/cast_intro_overlay_background_color"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="302dp"
+        android:layout_above="@+id/button2"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="80dp"
+        android:layout_height="46dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginRight="13dp"
+        android:text="ค่าเเท๊กซี่"
+        android:textColor="@color/cast_libraries_material_featurehighlight_text_body_color"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="55dp"
+        tools:layout_editor_absoluteY="216dp"
+        android:layout_alignBaseline="@+id/meter"
+        android:layout_alignBottom="@+id/meter"
+        android:layout_toLeftOf="@+id/meter"
+        android:layout_toStartOf="@+id/meter" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/save"
+        android:onClick="stop"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="412dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/comment"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_marginBottom="25dp"
+        android:text="คำเเนะนำในการให้บริการ"
+        android:textColor="@color/cast_libraries_material_featurehighlight_text_body_color"
+        android:textSize="18sp" />
+
+</RelativeLayout>

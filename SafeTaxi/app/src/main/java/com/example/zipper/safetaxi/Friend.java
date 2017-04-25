@@ -8,7 +8,7 @@ public class Friend {
     public  String Name;
     public Friend(String Name)
     {
-
+this.Name=Name;
 
     }
 }

@@ -14,7 +14,7 @@
 
 
         <TextView
-            android:id="@+id/text1"
+            android:id="@+id/tell"
             android:layout_width="258dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"

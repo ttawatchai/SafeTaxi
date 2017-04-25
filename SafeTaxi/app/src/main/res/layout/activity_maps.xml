@@ -21,15 +21,14 @@
 
     <Button
         android:id="@+id/btnFindPath"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="11dp"
         android:layout_marginEnd="69dp"
         android:layout_marginRight="69dp"
         android:layout_toLeftOf="@+id/dura"
-        android:background="?android:attr/colorPressedHighlight"
-        android:text="เเสดงเส้นทาง"
+        android:background="@drawable/showroute"
         android:textColor="@color/place_autocomplete_prediction_primary_text" />
 
     <TextView
@@ -84,55 +83,45 @@
         android:layout_marginTop="22dp"
         android:id="@+id/meter" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/meter"
-        android:layout_alignLeft="@+id/btnFindPath"
-        android:layout_alignStart="@+id/btnFindPath"
-        android:layout_marginLeft="35dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="41dp"
-        android:id="@+id/textview" />
-
     <Button
-        android:text="Start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/buttongo"
-        android:visibility="invisible"
-        android:onClick="start"
-        android:layout_alignBaseline="@+id/btnFindPath"
-        android:layout_alignBottom="@+id/btnFindPath"
-        android:layout_alignRight="@+id/textview"
-        android:layout_alignEnd="@+id/textview" />
-
-    <Button
-        android:text="Finish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/Finish"
-        android:visibility="invisible"
-        android:onClick="stop"
-        android:layout_alignBaseline="@+id/btnFindPath"
         android:layout_alignBottom="@+id/btnFindPath"
+        android:layout_alignEnd="@+id/btnFindPath"
         android:layout_alignLeft="@+id/btnFindPath"
+        android:layout_alignRight="@+id/btnFindPath"
         android:layout_alignStart="@+id/btnFindPath"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp" />
+        android:layout_alignTop="@+id/btnFindPath"
+        android:background="@drawable/start"
+        android:onClick="start"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/Finish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnFindPath"
+        android:layout_alignEnd="@+id/btnFindPath"
+        android:layout_alignLeft="@+id/btnFindPath"
+        android:layout_alignRight="@+id/btnFindPath"
+        android:layout_alignStart="@+id/btnFindPath"
+        android:layout_alignTop="@+id/btnFindPath"
+        android:background="@drawable/end"
+        android:onClick="stop"
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/pop"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginLeft="49dp"
+        android:layout_marginStart="49dp"
         android:layout_toEndOf="@+id/btnFindPath"
         android:layout_toRightOf="@+id/btnFindPath"
-        android:background="@android:color/holo_orange_dark" />
+        android:background="@drawable/show" />
 
 
 </RelativeLayout>

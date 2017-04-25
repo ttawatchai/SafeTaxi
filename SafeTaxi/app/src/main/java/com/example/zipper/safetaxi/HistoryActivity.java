@@ -97,6 +97,24 @@ public class HistoryActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String tmp1 = ((TextView)view).getText().toString();
+
+                mLog.child(tmp1).setValue(null);
+
+
+                return false;
+
+
+            }
+        });
+
+
+
+
+
     }
 
 }

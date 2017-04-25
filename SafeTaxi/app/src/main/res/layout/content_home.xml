@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.zipper.safetaxi.HomeActivity"
     tools:showIn="@layout/app_bar_home">
@@ -19,130 +20,160 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context="com.example.zipper.safetaxi.SearchActivity"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="-15dp">
+        tools:layout_editor_absoluteY="16dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
 
 
-        <TextView
-            android:id="@+id/mail"
-            android:layout_width="200dp"
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="300dp"
             android:layout_height="50dp"
-            android:layout_marginTop="12dp"
-            android:text="ใส่ข้อมูลเพื่อเริ่มต้น"
-            android:textSize="25dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:background="@drawable/text"
+            android:orientation="horizontal"
+            android:layout_alignTop="@+id/place_autocomplete_fragment"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_toRightOf="@+id/imageView3"
+            android:layout_toEndOf="@+id/imageView3"></LinearLayout>
 
         <fragment
             android:id="@+id/place_autocomplete_fragment"
             android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:textSize="0sp"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+
+            android:layout_marginTop="22dp"
             tools:layout="@layout/place_autocomplete_item_powered_by_google"
-            android:layout_below="@+id/mail"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_below="@+id/imageView2"
+            android:layout_toRightOf="@+id/imageView3"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="155dp"
+            android:layout_toEndOf="@+id/imageView3"
+            android:layout_toRightOf="@+id/imageView3"
+            android:background="@drawable/text"
+            android:orientation="horizontal"></LinearLayout>
 
         <fragment
             android:id="@+id/place_autocomplete_fragment1"
             android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            tools:layout="@layout/place_autocomplete_item_powered_by_google"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_alignLeft="@+id/place_autocomplete_fragment"
+            android:layout_alignStart="@+id/place_autocomplete_fragment"
             android:layout_below="@+id/place_autocomplete_fragment"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_marginTop="24dp"
+            tools:layout="@layout/place_autocomplete_item_powered_by_google"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <Button
             android:id="@+id/btnFindPath"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="คำนวณ"
-            android:layout_below="@+id/place_autocomplete_fragment1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="12dp" />
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:background="@drawable/cal"
+            android:layout_above="@+id/imageView5"
+            android:layout_alignLeft="@+id/start"
+            android:layout_alignStart="@+id/start"
+            android:layout_marginBottom="14dp" /><![CDATA[
 
-        <TextView
-            android:id="@+id/tvDistan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/dis"
-            android:layout_alignLeft="@+id/tvCost"
-            android:layout_alignStart="@+id/tvCost"
-            android:layout_toEndOf="@+id/dis"
-            android:textSize="20dp" />
 
-        <TextView
-            android:id="@+id/tvCost"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/textView11"
-            android:layout_alignLeft="@+id/tvDuration"
 
-            android:layout_alignStart="@+id/tvDuration"
-            android:layout_toEndOf="@+id/dura"
-            android:textSize="20dp" />
+        />
 
-        <TextView
-            android:id="@+id/dis"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/dura"
-            android:layout_alignStart="@+id/dura"
-            android:layout_below="@+id/dura"
-            android:layout_marginTop="21dp"
-            android:text="ระยะทาง"
-            android:textSize="20dp" />
+
+
+
+
+        ]]>
 
         <Button
             android:id="@+id/start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:background="@drawable/start"
             android:onClick="gogo"
-            android:text="start"
             android:visibility="visible"
-            android:layout_below="@+id/tvCost"
-            android:layout_toRightOf="@+id/dura"
-            android:layout_toEndOf="@+id/dura"
-            android:layout_marginTop="22dp" />
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
 
-        <TextView
-            android:id="@+id/dura"
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/headhome"
+            android:layout_marginTop="13dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:id="@+id/imageView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="58dp"
+            app:srcCompat="@drawable/picsearch"
+            android:layout_alignTop="@+id/linearLayout3"
+            android:layout_toLeftOf="@+id/imageView2"
+            android:layout_toStartOf="@+id/imageView2"
+            android:layout_marginRight="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_alignBottom="@+id/linearLayout4" />
 
-            android:text="เวลาที่ใช้"
-            android:textSize="20dp"
-            android:layout_alignTop="@+id/btnFindPath"
-            android:layout_toLeftOf="@+id/btnFindPath"
-            android:layout_toStartOf="@+id/btnFindPath" />
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="257dp"
+            android:layout_height="128dp"
+            app:srcCompat="@drawable/fieldbank"
+            tools:layout_editor_absoluteX="64dp"
+            tools:layout_editor_absoluteY="309dp"
+            android:layout_above="@+id/start"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="14dp" />
 
         <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/dis"
-            android:layout_alignStart="@+id/dis"
-            android:layout_below="@+id/dis"
-            android:layout_marginTop="20dp"
-            android:text="ราคา"
-            android:textSize="20dp" />
+            android:id="@+id/tvDistan"
+            android:layout_width="113dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="19dp"
+            android:textSize="15dp"
+            tools:layout_editor_absoluteX="184dp"
+            tools:layout_editor_absoluteY="332dp"
+            android:layout_alignTop="@+id/imageView5"
+            android:layout_alignRight="@+id/imageView5"
+            android:layout_alignEnd="@+id/imageView5" />
 
         <TextView
             android:id="@+id/tvDuration"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/dis"
-            android:layout_alignEnd="@+id/mail"
-            android:layout_alignRight="@+id/mail"
-            android:layout_marginEnd="39dp"
-            android:layout_marginRight="39dp"
-            android:textSize="20dp" />
+            android:layout_width="113dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="18dp"
+            android:textSize="15dp"
+
+            tools:layout_editor_absoluteX="184dp"
+            tools:layout_editor_absoluteY="363dp"
+            android:layout_below="@+id/tvDistan"
+            android:layout_alignRight="@+id/imageView5"
+            android:layout_alignEnd="@+id/imageView5" />
+
+        <TextView
+            android:id="@+id/tvCost"
+            android:layout_width="113dp"
+            android:layout_height="20dp"
+            android:textSize="15dp"
+
+            tools:layout_editor_absoluteX="184dp"
+            tools:layout_editor_absoluteY="396dp"
+            android:layout_marginTop="12dp"
+            android:layout_below="@+id/tvDuration"
+            android:layout_alignRight="@+id/imageView5"
+            android:layout_alignEnd="@+id/imageView5" />
 
 
     </RelativeLayout>
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

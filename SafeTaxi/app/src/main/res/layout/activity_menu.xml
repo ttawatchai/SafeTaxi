@@ -11,7 +11,9 @@
     <include
         layout="@layout/app_bar_home"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+
+    />
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
@@ -19,7 +21,10 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        app:elevation="1dp"
         app:headerLayout="@layout/nav_header_home"
+        android:background="#626262"
+        app:itemTextColor="#f1f1f1"
         app:menu="@menu/activity_home_drawer" />
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -30,41 +35,6 @@ android:layout_height="match_parent"
 android:fitsSystemWindows="true"
 tools:openDrawer="start">
 
-
-
-
-<Button
-    android:id="@+id/setting"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:layout_marginBottom="115dp"
-    android:onClick="show"
-    android:text="Button" />
-
-<Button
-    android:id="@+id/history"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_above="@+id/setting"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:layout_marginBottom="41dp"
-    android:onClick="his"
-    android:text="ประวัติการใช้งาน" />
-
-<Button
-    android:id="@+id/findDirec"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignBottom="@+id/history"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:layout_marginBottom="95dp"
-    android:onClick="cal"
-    android:text="เริ่มต้น" />
 
 </RelativeLayout>
 

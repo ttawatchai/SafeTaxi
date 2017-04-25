@@ -15,9 +15,14 @@
             android:icon="@drawable/ic_action_person"
             android:title="ผู้ติดต่อ" />
         <item
+            android:id="@+id/nav_bar"
+            android:icon="@drawable/ic_action_storage"
+            android:title="รถเเท๊กซี่" />
+        <item
             android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_action_settings"
-            android:title="ตั้งค่า" />
+            android:icon="@drawable/ic_action_not_secure"
+            android:title="LogOut" />
+
     </group>
 
 

@@ -12,65 +12,118 @@ tools:context="com.example.zipper.safetaxi.FriendLocationActivity"
 android:orientation="vertical"  >
 
 
-<fragment
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
-    android:layout_width="372dp"
-    android:layout_height="394dp"
-    android:layout_below="@+id/desName"
-    tools:layout_editor_absoluteX="6dp"
-    tools:layout_editor_absoluteY="-1dp" />
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="400dp"
+        android:layout_height="390dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/desName"
+        tools:layout_editor_absoluteX="6dp"
+        tools:layout_editor_absoluteY="-1dp" />
 
     <Button
         android:id="@+id/btnFindPath"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:background="?android:attr/colorPressedHighlight"
-        android:text="เเสดงเส้นทาง"
-        android:textColor="@color/place_autocomplete_prediction_primary_text"
         android:layout_alignBottom="@+id/map"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="122dp"
-        android:layout_marginStart="122dp" />
+        android:layout_marginStart="122dp"
+        android:background="?android:attr/colorPressedHighlight"
+        android:text="เเสดงเส้นทาง"
+        android:textColor="@color/place_autocomplete_prediction_primary_text"
+        android:visibility="visible" />
 
 
     <TextView
-        android:id="@+id/text1"
-        android:layout_width="258dp"
+        android:id="@+id/tell"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="15dp"
         android:padding="2dp"
-        android:text="Medium Text"
-        android:textColor="#33CC33"
-        android:textSize="@dimen/cast_libraries_material_featurehighlight_text_horizontal_offset"
-        android:layout_marginStart="32dp"
+        android:textSize="18sp"
         android:layout_below="@+id/map"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignLeft="@+id/taxi"
+        android:layout_alignStart="@+id/taxi"
+        android:layout_marginTop="12dp" />
+
     <TextView
-        android:id="@+id/text2"
+        android:id="@+id/taxi"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tell"
+        android:layout_marginEnd="21dp"
+        android:layout_marginRight="21dp"
+        android:padding="2dp"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/code"
         android:layout_width="258dp"
         android:layout_height="wrap_content"
         android:padding="2dp"
-        android:text="Medium Text"
-        android:textColor="#33CC33"
-        android:textSize="@dimen/cast_libraries_material_featurehighlight_text_horizontal_offset"
-        android:layout_below="@+id/text1"
-        android:layout_alignLeft="@+id/text1"
-        android:layout_alignStart="@+id/text1" />
+        android:textSize="18sp"
+        android:layout_below="@+id/taxi"
+        android:layout_toRightOf="@+id/textView9"
+        android:layout_alignRight="@+id/taxi"
+        android:layout_alignEnd="@+id/taxi" />
+
     <TextView
-        android:id="@+id/text3"
+        android:id="@+id/meter"
         android:layout_width="258dp"
         android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/code"
+        android:layout_alignRight="@+id/code"
+        android:layout_below="@+id/code"
         android:padding="2dp"
-        android:text="Medium Text"
-        android:textColor="#33CC33"
-        android:textSize="@dimen/cast_libraries_material_featurehighlight_text_horizontal_offset"
-        android:layout_below="@+id/text2"
-        android:layout_alignLeft="@+id/text2"
-        android:layout_alignStart="@+id/text2" />
+        android:textSize="18sp"
+        android:layout_alignLeft="@+id/code"
+        android:layout_alignStart="@+id/code" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="เส้นทางจาก :"
+        android:textSize="18sp"
+        android:layout_alignTop="@+id/tell"
+        android:layout_alignLeft="@+id/textView6"
+        android:layout_alignStart="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="ผู้ให้บริการ :"
+        android:textSize="18sp"
+        android:layout_alignBaseline="@+id/taxi"
+        android:layout_alignBottom="@+id/taxi"
+        android:layout_alignLeft="@+id/textView9"
+        android:layout_alignStart="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="เลขทะเบียนรถ :"
+        android:textSize="18sp"
+        android:layout_below="@+id/taxi"
+        android:layout_toLeftOf="@+id/taxi"
+        android:layout_toStartOf="@+id/taxi" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ค่าบริการ :"
+        android:textSize="18sp"
+        android:layout_below="@+id/code"
+        android:layout_alignLeft="@+id/textView9"
+        android:layout_alignStart="@+id/textView9" />
 
 </RelativeLayout>
 

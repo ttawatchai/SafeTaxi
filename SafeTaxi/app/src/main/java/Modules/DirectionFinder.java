@@ -39,6 +39,8 @@ public class DirectionFinder {
     }
 
     private String createUrl() throws UnsupportedEncodingException {
+
+
         String urlOrigin = URLEncoder.encode(origin, "utf-8");
         String urlDestination = URLEncoder.encode(destination, "utf-8");
 

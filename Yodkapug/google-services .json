@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1027175273539",
+    "firebase_url": "https://mywallet-67268.firebaseio.com",
+    "project_id": "mywallet-67268",
+    "storage_bucket": "mywallet-67268.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1027175273539:android:729f031ee9cbe39a",
+        "android_client_info": {
+          "package_name": "com.example.zipper.yodkapuk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1027175273539-mga38mboqua1nq7r824l3t3j3sbc0uo4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.zipper.yodkapuk",
+            "certificate_hash": "d7185775af8b24921b07798e1417a5a7e04371dc"
+          }
+        },
+        {
+          "client_id": "1027175273539-cqdrki5lliqfggum71m8slqdtm9spu7h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8ZSwBBmWppaR_Jc7YU93J6jwcx_AZIKg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1027175273539-cqdrki5lliqfggum71m8slqdtm9spu7h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

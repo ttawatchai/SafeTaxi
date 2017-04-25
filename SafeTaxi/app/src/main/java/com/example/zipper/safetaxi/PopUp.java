@@ -71,12 +71,12 @@ public class PopUp extends Activity {
                     String rate = (String) ((DataSnapshot) i.next()).getValue();
 
                     Driver = (String) ((DataSnapshot) i.next()).getValue();
+                    Log.d("DEs",Driver);
 
                     String cost = (String) ((DataSnapshot) i.next()).getValue();
 
                     String form = (String) ((DataSnapshot) i.next()).getValue();
 
-                    String meter = (String) ((DataSnapshot) i.next()).getValue();
 
 
 
@@ -92,6 +92,7 @@ public class PopUp extends Activity {
 //                        Toast.makeText(getApplicationContext(),"NO Route", Toast.LENGTH_SHORT).show();
                         break;
                     }
+                    String meter = (String) ((DataSnapshot) i.next()).getValue();
                     try{
                         String tell = (String) ((DataSnapshot) i.next()).getValue();
 
@@ -115,16 +116,16 @@ public class PopUp extends Activity {
 
                 }
 
-                Log.d("Des",Driver);
-
-
                 name = (EditText) findViewById(R.id.editText);
                 tmp=Driver;
                 name.setHint(tmp);
 // EditText name = (EditText) findViewById(R.id.editText);
-               code = (EditText) findViewById(R.id.editText2);
+                code = (EditText) findViewById(R.id.editText2);
                 tmp1=taxicode;
                 code.setHint(tmp1);
+
+
+
 
 
     }
@@ -152,11 +153,11 @@ public class PopUp extends Activity {
         mLog.child("Bus Registration").setValue(tmp1);
 
 
-        DatabaseReference mCode = mTaxisRef.child(tmp1);
-        DatabaseReference mTime = mCode.child(date);
-        mTime.child("comment").setValue("No Comment");
-        mTime.child("rate").setValue("-");
-        mTime.child("Driver").setValue(tmp);
+//        DatabaseReference mCode = mTaxisRef.child(tmp1);
+//        DatabaseReference mTime = mCode.child(date);
+//        mTime.child("comment").setValue("No Comment");
+//        mTime.child("rate").setValue("-");
+//        mTime.child("Driver").setValue(tmp);
 
         Toast.makeText(getApplicationContext(),"บันทึกเเสร็จสิ้น", Toast.LENGTH_SHORT).show();
     }

@@ -48,13 +48,17 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.RemoteMessage;
 
 import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import Modules.DirectionFinder;
@@ -62,6 +66,7 @@ import Modules.DirectionFinderListener;
 import Modules.Route;
 
 import static android.app.PendingIntent.*;
+
 import static com.example.zipper.safetaxi.R.id.map;
 
 
@@ -73,10 +78,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private String HIS;
     private GoogleMap mMap;
     private Button btnFindPath;
-    int count = 0;
+    int count = 0,count1=0;
     LocationManager locManage;
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mUsersRef = mRootRef.child("History");
+    DatabaseReference mUserName = mRootRef.child("user");
+    DatabaseReference mTaxiName = mRootRef.child("taxi");
 
     private List<Marker> originMarkers = new ArrayList<>();
     private List<Marker> destinationMarkers = new ArrayList<>();
@@ -106,12 +113,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         Uid = getIntent().getExtras().getString("UID");
         HIS = getIntent().getExtras().getString("HIS");
         final DatabaseReference mUID = mUsersRef.child(Uid);
+        final DatabaseReference mUID1 = mUserName.child(Uid);
         final DatabaseReference mhis = mUID.child("His");
         final DatabaseReference mHIS = mhis.child(HIS);
 
 
 
-        mUID.child("Status").setValue("On");
+
 
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -176,6 +184,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         pop.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+
                 Intent intent = new Intent(MapsActivity.this,PopUp.class);
                 intent.putExtra("UID",Uid);
                 Log.d("name",Uid);
@@ -200,6 +209,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 more1.setAction(Intent.ACTION_MAIN);
                 more1.addCategory(Intent.CATEGORY_LAUNCHER);
                 PendingIntent pen = PendingIntent.getActivity(MapsActivity.this,0,more,0);
+                notification1.setContentIntent(pen);
                 notification1.setContentIntent(pen);
                 notificationManager1 = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
                 notificationManager1.notify(0,notification1.build());
@@ -226,9 +236,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 DatabaseReference mUID = mUsersRef.child(Uid);
                 DatabaseReference mhis = mUID.child("His");
                 final DatabaseReference mHIS = mhis.child(HIS);
-
-                final DatabaseReference mCur = mUID.child("current location");
                 final DatabaseReference mLoc = mHIS.child("loc");
+                final DatabaseReference mUser = mUserName.child(Uid);
+                final DatabaseReference mCur = mUser.child("CurrentLocation");
+
+                mUser.child("TravelTo").setValue(HIS);
+
+
 
                 //remove previous current location Marker
 
@@ -244,15 +258,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     mLoc.child(time + "," + "long").setValue(loti);
                     mCur.child("lat").setValue(lati);
                     mCur.child("long").setValue(loti);
-Log.d("testt", String.valueOf(location.distanceTo(temp)/1000));
-                    if(location.distanceTo(temp)/1000 == 0.5)
+
+
+
+                    if(location.distanceTo(temp)/1000 < 0.75 && count1 == 0)
                     {
+                        Log.d("distanceto", String.valueOf(location.distanceTo(temp)/1000));
                         PendingIntent pen = PendingIntent.getActivity(MapsActivity.this,0,more,0);
                         notification.setContentIntent(pen);
                         notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
                         notificationManager.notify(0,notification.build());
                         notification.setOngoing(true);
                         notification.setAutoCancel(true);
+
+                        count1++;
                     }
 
 
@@ -460,10 +479,9 @@ Log.d("testt", String.valueOf(location.distanceTo(temp)/1000));
             double lat = route.endLocation.latitude;
             double longi=route.endLocation.longitude;
 
-//                    temp .setLatitude(lat);
-//                    temp.setLongitude(longi);
-            temp.setLatitude(13.762779141602536);
-            temp.setLongitude(100.53704158465575);
+           temp .setLatitude(lat);
+                    temp.setLongitude(longi);
+
 
 
 
@@ -484,18 +502,22 @@ Log.d("testt", String.valueOf(location.distanceTo(temp)/1000));
 
 
     public void stop(View v) {
-        final DatabaseReference mUID = mUsersRef.child(Uid);
-        final DatabaseReference mHIS = mUID.child(HIS);
-        mUID.child("Status").setValue("Off");
-        Intent i = new Intent(getApplicationContext(),HomeActivity.class);
+        final DatabaseReference mTax = mTaxiName.child(Uid);
+
+        Intent i = new Intent(getApplicationContext(),RateCommendActivity.class);
         super.onPause();
         locationManager.removeUpdates(listener);
         locationManager = null;
         i.putExtra("UID",Uid);
-        finish();
+        i.putExtra("His",HIS);
+
+        startActivity(i);
     }
 
-    @Override
+
+
+
+            @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode){
             case 10:
@@ -515,15 +537,53 @@ Log.d("testt", String.valueOf(location.distanceTo(temp)/1000));
             }
             return;
         }
-        // this code won't execute IF permissions are not allowed, because in the line above there is return statement.
+
         bu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //noinspection MissingPermission
                 locationManager.requestLocationUpdates("gps", 5000, 0, listener);
-                bu.setVisibility(View.INVISIBLE );
+                bu.setVisibility(View.INVISIBLE);
                 fi.setVisibility(View.VISIBLE);
+                final DatabaseReference mUID = mUserName.child(Uid);
+                DatabaseReference mfri = mUID.child("Friend");
+                DatabaseReference mFri = mfri.getRef();
+                mFri.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+                        List<String> set = new ArrayList<String>();
+                        Iterator i = dataSnapshot.getChildren().iterator();
+                        Iterator j = dataSnapshot.getChildren().iterator();
+
+                        while (i.hasNext()) {
+
+                            set.add(((DataSnapshot) i.next()).getKey());
+//                    Log.d("job", String.valueOf(((DataSnapshot) i.next()).getValue()));
+                        }
+                        for (int k = 0; k < set.size(); k++) {
+
+
+                                final DatabaseReference mUID = mUserName.child(set.get(k));
+                                DatabaseReference mfri = mUID.child("Friend");
+
+                                mfri.child(Uid).setValue("On");
+
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
     }
 }
+
+
+

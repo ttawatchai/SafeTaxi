@@ -1,26 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg"
     tools:context="com.example.zipper.safetaxi.AddFriendActivity">
 
     <EditText
         android:id="@+id/nameSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/search"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/text"
         android:ems="10"
-        android:hint="Name"
+        android:hint="ชื่อผู้ใช้"
         android:inputType="textPersonName"
+        android:textAlignment="center"
         tools:layout_editor_absoluteX="85dp"
         tools:layout_editor_absoluteY="54dp" />
 
     <Button
         android:id="@+id/search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Search"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/nameFound"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="49dp"
+        android:background="@drawable/serch"
+        android:onClick="search"
         tools:layout_editor_absoluteX="148dp"
         tools:layout_editor_absoluteY="112dp" />
 
@@ -28,14 +38,25 @@
         android:id="@+id/nameFound"
         android:layout_width="153dp"
         android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="215dp"
+        android:background="@drawable/text"
+        android:textAlignment="center"
+        android:visibility="invisible"
         tools:layout_editor_absoluteX="116dp"
         tools:layout_editor_absoluteY="191dp" />
 
     <Button
         android:id="@+id/button8"
-        android:layout_width="55dp"
-        android:layout_height="34dp"
-        android:text="เพิ่ม"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/search"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="99dp"
+        android:background="@drawable/add"
+        android:onClick="add"
+        android:visibility="invisible"
         tools:layout_editor_absoluteX="165dp"
         tools:layout_editor_absoluteY="253dp" />
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
