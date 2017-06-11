@@ -186,6 +186,7 @@ public class RateCommendActivity extends AppCompatActivity {
             mTime.child("Des").setValue(Des);
             Intent i = new Intent(getApplicationContext(),HomeActivity.class);
             i.putExtra("UID",Uid);
+            i.putExtra("photo",Pic);
 startActivity(i);
         }
 

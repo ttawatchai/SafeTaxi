@@ -190,24 +190,26 @@ public class LoginActivity extends AppCompatActivity implements  View.OnClickLis
 
             //Fetch values
             String personName = acct.getDisplayName();
-            String personPhotoUrl = acct.getPhotoUrl().toString();
+
+//            String personPhotoUrl = acct.getPhotoUrl().toString();
 //            Uri personPhotoUrl = acct.getPhotoUrl();
             String email = acct.getEmail();
             //String familyName = acct.getFamilyName();
-//            Uri imageUrl = acct.getPhotoUrl();
+            Uri imageUrl = acct.getPhotoUrl();
 
 
 
             Log.e(TAG, "Name: " + personName +
-                    ", email: " + email +
-                    ", Image: " + personPhotoUrl );
+                    ", email: " + email );
+//                    +
+//                    ", Image: " + personPhotoUrl );
             //  ", Family Name: " + familyName);
 
             //Set values
 
             name=personName;
             mail=email;
-            photo=personPhotoUrl;
+//            photo=personPhotoUrl;
 //            imgProfilePic.setImageURI(imageUrl);
 
 
@@ -317,8 +319,8 @@ public class LoginActivity extends AppCompatActivity implements  View.OnClickLis
 
             DatabaseReference mUID2 = mUsersRef.child(name);
             DatabaseReference mUID3 = mUID2.child("CurrentLocation");
-            mUID3.child("latitude").setValue("0");
-            mUID3.child("longitude").setValue("0");
+            mUID3.child("lat").setValue("0");
+            mUID3.child("long").setValue("0");
             mUID2.child("TravelTo").setValue("-");
             mUID2.child("Status").setValue("Off");
             startActivity(i);

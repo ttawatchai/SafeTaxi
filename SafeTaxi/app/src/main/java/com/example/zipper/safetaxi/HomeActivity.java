@@ -162,24 +162,23 @@ public class HomeActivity extends AppCompatActivity
         txtName.setText(Uid);
         txtGG.setText(email);
 
-    Log.d("photo",photo);
 
 
-
-        if(photo.equals("-")) {
-            Glide.with(getApplicationContext()).load("http://www.mtuser.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png")
-                    .thumbnail(0.5f)
-                    .crossFade()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(imgProfilePic);
-        }else{
-            Glide.with(getApplicationContext()).load(photo)
-                    .thumbnail(0.5f)
-                    .crossFade()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(imgProfilePic);
-        }
-        imgProfilePic = (ImageView) navigationView.findViewById(R.id.imageView);
+//        if(photo.equals("-")) {
+//            Glide.with(getApplicationContext()).load("http://www.mtuser.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png")
+//                    .thumbnail(0.5f)
+//                    .crossFade()
+//                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                    .into(imgProfilePic);
+//
+//        }else{
+//            Glide.with(getApplicationContext()).load(photo)
+//                    .thumbnail(0.5f)
+//                    .crossFade()
+//                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                    .into(imgProfilePic);
+//        }
+//        imgProfilePic = (ImageView) navigationView.findViewById(R.id.imageView);
 
 
 

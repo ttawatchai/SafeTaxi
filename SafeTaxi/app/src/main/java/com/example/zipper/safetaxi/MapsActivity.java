@@ -198,25 +198,66 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         pop.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                final NotificationCompat.Builder notification1 = new NotificationCompat.Builder(MapsActivity.this)
-                        .setContentTitle("Safe Taxi")
-                        .setContentText("เพื่อนของของคุณเกิดปัญหาในการเดินทาง ต้องการให้ติดต่อกลับ โดยด่วน")
-                        .setTicker("ฉุกเฉิน เพื่อนของคุณต้องการให้ติดต่อกลับ ")
-                        .setAutoCancel(true)
-                        .setSmallIcon(R.drawable.safe_taxi_logo);
-                final Intent more1 = new Intent(MapsActivity.this,MapsActivity.class);
-                more1.addFlags((Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_SINGLE_TOP ));
-                more1.setAction(Intent.ACTION_MAIN);
-                more1.addCategory(Intent.CATEGORY_LAUNCHER);
-                PendingIntent pen = PendingIntent.getActivity(MapsActivity.this,0,more,0);
-                notification1.setContentIntent(pen);
-                notification1.setContentIntent(pen);
-                notificationManager1 = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-                notificationManager1.notify(0,notification1.build());
-                notification1.setOngoing(true);
-                notification1.setAutoCancel(true);
 
-                return false;
+                final DatabaseReference mUID = mUserName.child(Uid);
+                DatabaseReference mfri = mUID.child("Friend");
+                DatabaseReference mFri = mfri.getRef();
+                mFri.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+                        List<String> set = new ArrayList<String>();
+                        Iterator i = dataSnapshot.getChildren().iterator();
+                        Iterator j = dataSnapshot.getChildren().iterator();
+
+                        while (i.hasNext()) {
+
+                            set.add(((DataSnapshot) i.next()).getKey());
+//                    Log.d("job", String.valueOf(((DataSnapshot) i.next()).getValue()));
+                        }
+                        for (int k = 0; k < set.size(); k++) {
+
+
+                            final DatabaseReference mUID = mUserName.child(set.get(k));
+                            DatabaseReference mfri = mUID.child("Friend");
+
+                            mfri.child(Uid).setValue("Alert");
+
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+
+//                final NotificationCompat.Builder notification1 = new NotificationCompat.Builder(MapsActivity.this)
+//                        .setContentTitle("Safe Taxi")
+//                        .setContentText("เพื่อนของของคุณเกิดปัญหาในการเดินทาง ต้องการให้ติดต่อกลับ โดยด่วน")
+//                        .setTicker("ฉุกเฉิน เพื่อนของคุณต้องการให้ติดต่อกลับ ")
+//                        .setAutoCancel(true)
+//                        .setSmallIcon(R.drawable.safe_taxi_logo);
+//                final Intent more1 = new Intent(MapsActivity.this,MapsActivity.class);
+//                more1.addFlags((Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_SINGLE_TOP ));
+//                more1.setAction(Intent.ACTION_MAIN);
+//                more1.addCategory(Intent.CATEGORY_LAUNCHER);
+//                PendingIntent pen = PendingIntent.getActivity(MapsActivity.this,0,more,0);
+//                notification1.setContentIntent(pen);
+//                notification1.setContentIntent(pen);
+//                notificationManager1 = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+//                notificationManager1.notify(0,notification1.build());
+//                notification1.setOngoing(true);
+//                notification1.setAutoCancel(true);
+//
+//
+//
+//
+              return false;
             }
         });
 
@@ -263,6 +304,41 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                     if(location.distanceTo(temp)/1000 < 0.75 && count1 == 0)
                     {
+                        DatabaseReference mfri = mUID.child("Friend");
+                        DatabaseReference mFri = mfri.getRef();
+                        mFri.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+                                List<String> set = new ArrayList<String>();
+                                Iterator i = dataSnapshot.getChildren().iterator();
+                                Iterator j = dataSnapshot.getChildren().iterator();
+
+                                while (i.hasNext()) {
+
+                                    set.add(((DataSnapshot) i.next()).getKey());
+//                    Log.d("job", String.valueOf(((DataSnapshot) i.next()).getValue()));
+                                }
+                                for (int k = 0; k < set.size(); k++) {
+
+
+                                    final DatabaseReference mUID = mUserName.child(set.get(k));
+                                    DatabaseReference mfri = mUID.child("Friend");
+
+                                    mfri.child(Uid).setValue("Near");
+
+
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+
                         Log.d("distanceto", String.valueOf(location.distanceTo(temp)/1000));
                         PendingIntent pen = PendingIntent.getActivity(MapsActivity.this,0,more,0);
                         notification.setContentIntent(pen);
@@ -270,6 +346,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         notificationManager.notify(0,notification.build());
                         notification.setOngoing(true);
                         notification.setAutoCancel(true);
+
+                        //check
+
 
                         count1++;
                     }
